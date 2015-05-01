@@ -7,15 +7,18 @@
 //
 
 #import "PLFMasterViewController.h"
+#import "PLFhttpClient.h"
+#import "NSDictionary+PLFbooks.h"
 
 @interface PLFMasterViewController ()
-
+@property (strong, nonatomic) NSArray *booksArray;
 @end
 
 @implementation PLFMasterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self loadBooks];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -23,9 +26,31 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+#pragma mark - IBAction
 - (IBAction)addBtnToAddBookViewController:(id)sender {
     [self performSegueWithIdentifier:@"addBookSegue" sender:self];
+}
+
+#pragma mark - Public
+- (void)loadBooks {
+
+    //successBlock
+    void (^submissionHandler)(NSArray *) = ^(NSArray *returnData) {
+        
+        self.booksArray = returnData;
+        [self.tableView reloadData];
+    };
+    
+    //errorBlock
+    void (^errorHandler)(NSURLSessionDataTask *task, NSError *error) = ^(NSURLSessionDataTask *task, NSError *error){
+    
+        NSLog(@"%@",error);
+        return;
+    };
+    
+    [[PLFhttpClient sharedPLFHTTPClient] getAllBooksWithSuccessHandler:submissionHandler
+                                                   andWithErrorHandler:errorHandler];
+
 }
 
 #pragma mark - Segues
@@ -46,8 +71,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"PLFCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
+    if(self.booksArray){
+        NSDictionary *eachBook = self.booksArray[indexPath.row];
+        cell.textLabel.text = [eachBook author];
+        cell.detailTextLabel.text = [eachBook description];
+    }
     return cell;
 }
 
@@ -57,8 +88,15 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    return  3;
+    
+    return [self.booksArray count];
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    //default height
+    return 100;
 }
 
 
