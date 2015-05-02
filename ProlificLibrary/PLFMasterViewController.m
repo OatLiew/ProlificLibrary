@@ -9,6 +9,7 @@
 #import "PLFMasterViewController.h"
 #import "PLFhttpClient.h"
 #import "NSDictionary+PLFbooks.h"
+#import "PLFtableCell.h"
 
 @interface PLFMasterViewController ()
 @property (strong, nonatomic) NSArray *booksArray;
@@ -72,12 +73,17 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"PLFCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    PLFtableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
+    if (cell == nil) {
+        PLFtableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     if(self.booksArray){
         NSDictionary *eachBook = self.booksArray[indexPath.row];
-        cell.textLabel.text = [eachBook author];
-        cell.detailTextLabel.text = [eachBook description];
+        cell.title.text = [eachBook title];
+        cell.author.text = [eachBook author];
     }
     return cell;
 }
@@ -88,15 +94,14 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
+
     return [self.booksArray count];
 }
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     //default height
-    return 100;
+    return 80;
 }
 
 

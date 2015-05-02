@@ -11,6 +11,7 @@
 		421DAA501AF1F7C800E6899B /* PLFAddBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 421DAA4F1AF1F7C800E6899B /* PLFAddBookViewController.m */; };
 		4237DA881AF31B4A0023D454 /* PLFhttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4237DA871AF31B4A0023D454 /* PLFhttpClient.m */; };
 		4237DA8C1AF34DC90023D454 /* NSDictionary+PLFbooks.m in Sources */ = {isa = PBXBuildFile; fileRef = 4237DA8B1AF34DC90023D454 /* NSDictionary+PLFbooks.m */; };
+		42714A331AF4451A00E009BB /* PLFtableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42714A321AF4451A00E009BB /* PLFtableCell.m */; };
 		4274EF0B1AF1E93100281FAE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4274EF0A1AF1E93100281FAE /* main.m */; };
 		4274EF0E1AF1E93100281FAE /* PLFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4274EF0D1AF1E93100281FAE /* PLFAppDelegate.m */; };
 		4274EF111AF1E93100281FAE /* PLFMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4274EF101AF1E93100281FAE /* PLFMasterViewController.m */; };
@@ -39,6 +40,8 @@
 		4237DA891AF31B8E0023D454 /* PLFhttpClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLFhttpClient.h; sourceTree = "<group>"; };
 		4237DA8A1AF34DBD0023D454 /* NSDictionary+PLFbooks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+PLFbooks.h"; sourceTree = "<group>"; };
 		4237DA8B1AF34DC90023D454 /* NSDictionary+PLFbooks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+PLFbooks.m"; sourceTree = "<group>"; };
+		42714A311AF4451A00E009BB /* PLFtableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLFtableCell.h; sourceTree = "<group>"; };
+		42714A321AF4451A00E009BB /* PLFtableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLFtableCell.m; sourceTree = "<group>"; };
 		4274EF051AF1E93100281FAE /* ProlificLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProlificLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4274EF091AF1E93100281FAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4274EF0A1AF1E93100281FAE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -180,6 +183,8 @@
 			children = (
 				4237DA8A1AF34DBD0023D454 /* NSDictionary+PLFbooks.h */,
 				4237DA8B1AF34DC90023D454 /* NSDictionary+PLFbooks.m */,
+				42714A311AF4451A00E009BB /* PLFtableCell.h */,
+				42714A321AF4451A00E009BB /* PLFtableCell.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -357,6 +362,7 @@
 				4274EF0E1AF1E93100281FAE /* PLFAppDelegate.m in Sources */,
 				4237DA881AF31B4A0023D454 /* PLFhttpClient.m in Sources */,
 				421DAA501AF1F7C800E6899B /* PLFAddBookViewController.m in Sources */,
+				42714A331AF4451A00E009BB /* PLFtableCell.m in Sources */,
 				4274EF111AF1E93100281FAE /* PLFMasterViewController.m in Sources */,
 				4274EF0B1AF1E93100281FAE /* main.m in Sources */,
 				4274EF141AF1E93100281FAE /* PLFDetailViewController.m in Sources */,
