@@ -8,7 +8,7 @@
 #import "PLFhttpClient.h"
 #import <Foundation/Foundation.h>
 
-static NSString * const BaseURLString = @"http://prolific-interview.herokuapp.com/553fe2fc533778000964ac17/";
+static NSString * const BaseURLString = @"http://prolific-interview.herokuapp.com/553fe2fc533778000964ac17";
 
 @interface PLFhttpClient ()
 
@@ -31,7 +31,6 @@ static NSString * const BaseURLString = @"http://prolific-interview.herokuapp.co
     return _sharedPLFHTTPClient;
 }
 
-
 - (instancetype)initWithBaseURL:(NSURL *)url
 {
     self = [super initWithBaseURL:url];
@@ -43,27 +42,50 @@ static NSString * const BaseURLString = @"http://prolific-interview.herokuapp.co
     return self;
 }
 
-
 //Get all books
-- (void)getAllBooksWithSuccessHandler:(PLFDataSubmissionBlock)successBlock
+- (void)getAllBooksWithSuccessHandler:(PLFDataSubmissionBlock_GET)successBlock
                   andWithErrorHandler:(PLFDataErrorBlock)errorBlock
 {
-    
-        NSString *string = [NSString stringWithFormat:@"%@books", BaseURLString];
-        NSURL *url = [NSURL URLWithString:string];
-        AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:url];
-    
-        [manager GET:string parameters:nil success:^(NSURLSessionDataTask *task, id responseObject){
+    NSString *string = [NSString stringWithFormat:@"%@/books", BaseURLString];
+    NSURL *url = [NSURL URLWithString:string];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:url];
 
-            //callBack
-            successBlock((NSArray*)responseObject);
-            
-        }failure:^(NSURLSessionDataTask *task, NSError *error){
-            
-            //callBack
-            errorBlock(task, error);
-             NSLog(@"Failure: %@", error);
-        }];
+    [manager GET:string parameters:nil success:^(NSURLSessionDataTask *task, id responseObject){
+
+        //callBack
+        successBlock((NSArray*)responseObject);
+        
+    }failure:^(NSURLSessionDataTask *task, NSError *error){
+        
+        //callBack
+        errorBlock(task, error);
+         NSLog(@"Failure: %@", error);
+    }];
 }
+
+// Post book
+- (void)postBookWithData:(NSDictionary *)bookParameters
+      WithSuccessHandler:(PLFDataSubmissionBlock_POST)successBlock
+     andWithErrorHandler:(PLFDataErrorBlock)errorBlock
+{
+    NSString *string = [NSString stringWithFormat:@"%@/books/", BaseURLString];
+    NSURL *url = [NSURL URLWithString:string];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:url];
+    
+    [manager POST:string parameters:bookParameters success:^(NSURLSessionDataTask *task, id responseObject){
+        
+        NSLog(@"%@",responseObject);
+        //callBack
+        successBlock((NSDictionary*)responseObject);
+        
+    }failure:^(NSURLSessionDataTask *task, NSError *error){
+        
+        //callBack
+        errorBlock(task, error);
+        NSLog(@"Failure: %@", error);
+    }];
+
+}
+
 
 @end

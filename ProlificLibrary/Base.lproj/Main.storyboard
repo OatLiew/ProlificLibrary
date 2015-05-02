@@ -238,6 +238,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="submitBtnPressed:" destination="h4W-Vc-bWG" eventType="touchUpInside" id="wCn-a4-bdy"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -266,6 +269,12 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="authorTextField" destination="NKj-ig-aHr" id="qHv-E0-kVj"/>
+                        <outlet property="catergoriesTextField" destination="IOE-tQ-7Zd" id="bFu-PQ-lIG"/>
+                        <outlet property="publisherTextField" destination="gsj-eh-q2z" id="Oig-4p-shi"/>
+                        <outlet property="titleTextField" destination="IQL-3x-y2K" id="JBj-q0-Itn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VXz-TK-Shh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -8,17 +8,24 @@
 
 #import "AFHTTPSessionManager.h"
 
+//define Type
+typedef void (^PLFDataSubmissionBlock_GET)(NSArray * PLFbooks);
+typedef void (^PLFDataSubmissionBlock_POST)(NSDictionary * PLFbooks);
+typedef void (^PLFDataErrorBlock)(NSURLSessionDataTask *task, NSError *error);
+
 @interface PLFhttpClient: AFHTTPSessionManager
 
 + (PLFhttpClient *)sharedPLFHTTPClient;
 - (instancetype)initWithBaseURL:(NSURL *)url;
 
-typedef void (^PLFDataSubmissionBlock)(NSArray * PLFbooks);
-typedef void (^PLFDataErrorBlock)(NSURLSessionDataTask *task, NSError *error);
-
 // GET books
-- (void)getAllBooksWithSuccessHandler:(PLFDataSubmissionBlock)successBlock
-                      andWithErrorHandler:(PLFDataErrorBlock)errorBlock;
+- (void)getAllBooksWithSuccessHandler:(PLFDataSubmissionBlock_GET)successBlock
+                  andWithErrorHandler:(PLFDataErrorBlock)errorBlock;
+
+// POST book
+- (void)postBookWithData:(NSDictionary *)bookData
+       WithSuccessHandler:(PLFDataSubmissionBlock_POST)successBlock
+      andWithErrorHandler:(PLFDataErrorBlock)errorBlock;
 
 
 @end

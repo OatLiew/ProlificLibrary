@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PLFAddBookViewController : UIViewController
+@interface PLFAddBookViewController : UIViewController<UITextFieldDelegate>
+
+@property (weak, nonatomic) IBOutlet UITextField *titleTextField;
+@property (weak, nonatomic) IBOutlet UITextField *authorTextField;
+@property (weak, nonatomic) IBOutlet UITextField *publisherTextField;
+@property (weak, nonatomic) IBOutlet UITextField *catergoriesTextField;
 
 @end

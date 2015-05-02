@@ -17,9 +17,14 @@
 
 @implementation PLFMasterViewController
 
+#pragma mark - Lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
     [self loadBooks];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,6 +44,7 @@
     void (^submissionHandler)(NSArray *) = ^(NSArray *returnData) {
         
         self.booksArray = returnData;
+        NSLog(@"%@",self.booksArray);
         [self.tableView reloadData];
     };
     
@@ -79,12 +85,17 @@
         PLFtableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+    
     if(self.booksArray){
         NSDictionary *eachBook = self.booksArray[indexPath.row];
-        cell.title.text = [eachBook title];
-        cell.author.text = [eachBook author];
+        
+        if([[eachBook title] length] > 0){
+            cell.title.text = [eachBook title];
+            cell.author.text = [eachBook author];
+        }
     }
+    
+    NSLog(@"%@",self.booksArray);
     return cell;
 }
 
