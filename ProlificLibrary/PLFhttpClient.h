@@ -7,10 +7,11 @@
 //
 
 #import "AFHTTPSessionManager.h"
+#import "PLFbook.h"
 
 //define Type
-typedef void (^PLFDataSubmissionBlock_GET)(NSArray * PLFbooks);
-typedef void (^PLFDataSubmissionBlock_POST)(NSDictionary * PLFbooks);
+typedef void (^SubmissionBlockArray)(NSArray * PLFbooks);
+typedef void (^SubmissionBlockPLFbook)(PLFbook * PLFbooks);
 typedef void (^PLFDataErrorBlock)(NSURLSessionDataTask *task, NSError *error);
 
 @interface PLFhttpClient: AFHTTPSessionManager
@@ -19,13 +20,24 @@ typedef void (^PLFDataErrorBlock)(NSURLSessionDataTask *task, NSError *error);
 - (instancetype)initWithBaseURL:(NSURL *)url;
 
 // GET books
-- (void)getAllBooksWithSuccessHandler:(PLFDataSubmissionBlock_GET)successBlock
+- (void)getAllBooksWithSuccessHandler:(SubmissionBlockArray)successBlock
                   andWithErrorHandler:(PLFDataErrorBlock)errorBlock;
 
 // POST book
-- (void)postBookWithData:(NSDictionary *)bookData
-       WithSuccessHandler:(PLFDataSubmissionBlock_POST)successBlock
+- (void)postBookWithData:(PLFbook *)book
+       WithSuccessHandler:(SubmissionBlockArray)successBlock
       andWithErrorHandler:(PLFDataErrorBlock)errorBlock;
+
+// Delete book
+- (void)deleteBookWithData:(PLFbook *)book
+        WithSuccessHandler:(SubmissionBlockArray)successBlock
+       andWithErrorHandler:(PLFDataErrorBlock)errorBlock;
+
+// GET each book
+- (void)getBookWithData:(PLFbook *)book
+        WithSuccessHandler:(SubmissionBlockPLFbook)successBlock
+       andWithErrorHandler:(PLFDataErrorBlock)errorBlock;
+
 
 
 @end

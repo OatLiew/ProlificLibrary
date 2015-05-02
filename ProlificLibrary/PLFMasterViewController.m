@@ -8,11 +8,11 @@
 
 #import "PLFMasterViewController.h"
 #import "PLFhttpClient.h"
-#import "NSDictionary+PLFbooks.h"
 #import "PLFtableCell.h"
+#import "PLFDetailViewController.h"
 
 @interface PLFMasterViewController ()
-@property (strong, nonatomic) NSArray *booksArray;
+@property (strong, nonatomic) NSMutableArray *booksArray;
 @end
 
 @implementation PLFMasterViewController
@@ -20,6 +20,8 @@
 #pragma mark - Lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.booksArray = [[NSMutableArray alloc]init];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -43,8 +45,7 @@
     //successBlock
     void (^submissionHandler)(NSArray *) = ^(NSArray *returnData) {
         
-        self.booksArray = returnData;
-        NSLog(@"%@",self.booksArray);
+        self.booksArray = [NSMutableArray arrayWithArray:returnData];
         [self.tableView reloadData];
     };
     
@@ -60,9 +61,36 @@
 
 }
 
+- (void)deleteBook:(PLFbook *)book {
+    
+    //successBlock
+    void (^submissionHandler)(NSArray *) = ^(NSArray *returnData) {
+        [self.tableView reloadData];
+    };
+    
+    //errorBlock
+    void (^errorHandler)(NSURLSessionDataTask *task, NSError *error) = ^(NSURLSessionDataTask *task, NSError *error){
+        
+        NSLog(@"%@",error);
+        return;
+    };
+    
+    [[PLFhttpClient sharedPLFHTTPClient] deleteBookWithData:book
+                                        WithSuccessHandler:submissionHandler
+                                        andWithErrorHandler:errorHandler];
+    
+}
+
 #pragma mark - Segues
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetailSegue"]) {
+        
+        UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
+        PLFDetailViewController *viewController = (PLFDetailViewController *)navController.topViewController;
+
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        NSLog(@"%@",self.booksArray[indexPath.row]);
+        viewController.book = self.booksArray[indexPath.row];
         
     }
     if ([[segue identifier] isEqualToString:@"addBookSegue"]) {
@@ -87,12 +115,9 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     if(self.booksArray){
-        NSDictionary *eachBook = self.booksArray[indexPath.row];
-        
-        if([[eachBook title] length] > 0){
-            cell.title.text = [eachBook title];
-            cell.author.text = [eachBook author];
-        }
+        PLFbook *book = self.booksArray[indexPath.row];
+        cell.title.text = book.title;
+        cell.author.text = book.author;
     }
     
     NSLog(@"%@",self.booksArray);
@@ -114,6 +139,15 @@
     //default height
     return 80;
 }
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    PLFbook *book = self.booksArray[indexPath.row];
+    [self.booksArray removeObject:book];
+    [self deleteBook:book];
+    
+}
+
 
 
 @end

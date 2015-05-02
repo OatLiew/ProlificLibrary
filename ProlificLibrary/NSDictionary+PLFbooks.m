@@ -28,12 +28,23 @@
 
 - (NSString *)lastCheckedOut{
     NSString *str = self[@"lastCheckedOut"];
-    return str;
+    
+    //check for NSnull
+    if([str isKindOfClass:[NSNull class]])
+        return @"";
+    else
+        return str;
 }
 
 - (NSString *)lastCheckedOutBy{
     NSString *str = self[@"lastCheckedOutBy"];
-    return str;
+    
+    //check for NSnull
+    if([str isKindOfClass:[NSNull class]])
+        return @"";
+    else
+        return str;
+    
 }
 
 - (NSString *)publisher{

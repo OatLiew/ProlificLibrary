@@ -37,13 +37,15 @@
     
     //check for empty Strings
     if(([self.titleTextField.text length] > 0) && ([self.authorTextField.text length] > 0)){
-
-        NSDictionary *booksParams = @{@"author":self.authorTextField.text,
-                                      @"title":self.titleTextField.text,
-                                      @"publisher":self.publisherTextField.text,
-                                      @"categories":self.catergoriesTextField.text};
         
-        [self postToServer:booksParams];
+        //create New book
+        PLFbook *book = [[PLFbook alloc] init];
+        book.author = self.authorTextField.text;
+        book.title = self.titleTextField.text;
+        book.publisher = self.publisherTextField.text;
+        book.categories = self.catergoriesTextField.text;
+                
+        [self postToServer:book];
     }
     else{
 
@@ -51,19 +53,21 @@
     }
 }
 
+//return Viewcontroller
 - (IBAction)DoneBtnToMasterViewController:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 
 #pragma mark - public
-- (void)postToServer:(NSDictionary *)bookParams{
+- (void)postToServer:(PLFbook *)bookParams{
 
     //successBlock
-    void (^submissionHandler)(NSDictionary *) = ^(NSDictionary *returnData) {
+    void (^submissionHandler)(NSArray *) = ^(NSArray *returnData) {
         NSLog(@"%@",returnData);
         
         [self showAlert:@"Submitted"];
+        [self clearTextFields];
 
     };
     
@@ -89,6 +93,15 @@
                                               cancelButtonTitle:@"Ok"
                                               otherButtonTitles:nil];
     [alertView show];
+}
+
+- (void)clearTextFields{
+
+    self.titleTextField.text = @"";
+    self.authorTextField.text = @"";
+    self.catergoriesTextField.text = @"";
+    self.publisherTextField.text = @"";
+    
 }
 
 #pragma mark - UITextfiled

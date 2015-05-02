@@ -17,5 +17,7 @@
 @property (strong, nonatomic) NSString *publisher;
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *url;
+@property (strong, nonatomic) NSNumber *id;
+
 
 @end
