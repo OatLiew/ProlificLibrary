@@ -118,9 +118,7 @@
     
     if(self.booksArray){
         PLFbook *book = self.booksArray[indexPath.row];
-        cell.title.text = book.author;
-        NSLog(@"%@",book.title);
-        
+        cell.title.text = book.title;
         cell.author.text = book.author;
     }
     
@@ -145,11 +143,11 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+
     PLFbook *book = self.booksArray[indexPath.row];
     [self.booksArray removeObject:book];
     [self deleteBook:book];
-    
+
 }
 
 
