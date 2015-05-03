@@ -10,7 +10,7 @@
 #import "PLFbook.h"
 
 @interface PLFDetailViewController : UIViewController
-@property (weak, nonatomic) PLFbook *book;
+@property (strong, nonatomic) PLFbook *book;
 @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
 @property (weak, nonatomic) IBOutlet UILabel *authorLbl;
 @property (weak, nonatomic) IBOutlet UILabel *publisherLbl;

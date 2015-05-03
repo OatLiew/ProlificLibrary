@@ -19,5 +19,4 @@
 @property (strong, nonatomic) NSString *url;
 @property (strong, nonatomic) NSNumber *id;
 
-
 @end

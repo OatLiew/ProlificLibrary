@@ -25,8 +25,8 @@ typedef void (^PLFDataErrorBlock)(NSURLSessionDataTask *task, NSError *error);
 
 // POST book
 - (void)postBookWithData:(PLFbook *)book
-       WithSuccessHandler:(SubmissionBlockArray)successBlock
-      andWithErrorHandler:(PLFDataErrorBlock)errorBlock;
+      WithSuccessHandler:(SubmissionBlockArray)successBlock
+     andWithErrorHandler:(PLFDataErrorBlock)errorBlock;
 
 // Delete book
 - (void)deleteBookWithData:(PLFbook *)book
@@ -35,9 +35,13 @@ typedef void (^PLFDataErrorBlock)(NSURLSessionDataTask *task, NSError *error);
 
 // GET each book
 - (void)getBookWithData:(PLFbook *)book
-        WithSuccessHandler:(SubmissionBlockPLFbook)successBlock
-       andWithErrorHandler:(PLFDataErrorBlock)errorBlock;
+     WithSuccessHandler:(SubmissionBlockPLFbook)successBlock
+    andWithErrorHandler:(PLFDataErrorBlock)errorBlock;
 
+// PUT book
+- (void)putBookWithData:(PLFbook *)book
+     WithSuccessHandler:(SubmissionBlockArray)successBlock
+    andWithErrorHandler:(PLFDataErrorBlock)errorBlock;
 
 
 @end

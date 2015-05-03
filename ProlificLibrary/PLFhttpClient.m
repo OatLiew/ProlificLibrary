@@ -133,6 +133,31 @@ static NSString * const POSTString = @"/books/";
         successBlock((PLFbook*)responseObject);
         NSLog(@"%@",responseObject);
         
+    }failure:^(NSURLSessionDataTask *task, NSError *error){
+        
+        //callBack
+        errorBlock(task, error);
+        NSLog(@"Failure: %@", error);
+    }];
+}
+
+
+// PUT book
+- (void)putBookWithData:(PLFbook *)book
+     WithSuccessHandler:(SubmissionBlockArray)successBlock
+    andWithErrorHandler:(PLFDataErrorBlock)errorBlock
+{
+    NSString *string = [NSString stringWithFormat:@"%@%@", BaseURLString, book.url];
+    NSURL *url = [NSURL URLWithString:string];
+    
+    NSDictionary *bookParams = @{@"lastCheckedOutBy":book.lastCheckedOutBy};
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:url];
+    [manager PUT:string parameters:bookParams success:^(NSURLSessionDataTask *task, id responseObject){
+        
+        //callBack
+        successBlock((NSArray*)responseObject);
+        NSLog(@"%@",responseObject);
+        
         
     }failure:^(NSURLSessionDataTask *task, NSError *error){
         
@@ -140,6 +165,7 @@ static NSString * const POSTString = @"/books/";
         errorBlock(task, error);
         NSLog(@"Failure: %@", error);
     }];
+    
 }
 
 

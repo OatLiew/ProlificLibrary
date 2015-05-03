@@ -10,6 +10,8 @@
 #import "PLFhttpClient.h"
 #import "PLFtableCell.h"
 #import "PLFDetailViewController.h"
+//#import "UIImageView+AFNetworking.h" //asynchonous loading of images
+
 
 @interface PLFMasterViewController ()
 @property (strong, nonatomic) NSMutableArray *booksArray;
@@ -26,7 +28,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [self loadBooks];
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,6 +48,7 @@
         
         self.booksArray = [NSMutableArray arrayWithArray:returnData];
         [self.tableView reloadData];
+
     };
     
     //errorBlock
@@ -116,7 +118,9 @@
     
     if(self.booksArray){
         PLFbook *book = self.booksArray[indexPath.row];
-        cell.title.text = book.title;
+        cell.title.text = book.author;
+        NSLog(@"%@",book.title);
+        
         cell.author.text = book.author;
     }
     
