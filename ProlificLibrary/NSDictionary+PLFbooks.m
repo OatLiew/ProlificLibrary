@@ -60,7 +60,7 @@
 
 //return empty string if value is Null
 - (NSString *)checkforNull: (NSString *)str{
-    
+
     if([str isKindOfClass:[NSNull class]])
         return @"";
     else

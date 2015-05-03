@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *publisherLbl;
 @property (weak, nonatomic) IBOutlet UILabel *catergoryLbl;
 @property (weak, nonatomic) IBOutlet UILabel *checkoutLbl;
+@property (weak, nonatomic) IBOutlet UILabel *checkOutByLbl;
 
 
 @end

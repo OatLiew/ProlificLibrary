@@ -37,7 +37,7 @@
     
     //Create Checkout Button
     UIAlertAction* checkOut = [UIAlertAction actionWithTitle:@"Check Out" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
-        
+
         //Check for empty String
         if([NameTextField.text length] > 0){
             PLFbook *book = [[PLFbook alloc]init];
@@ -60,7 +60,6 @@
     
     [alertController addAction:cancel];
     [alertController addAction:checkOut];
-
 
     [self presentViewController:alertController animated:YES completion:nil];
 }
@@ -96,6 +95,11 @@
     self.publisherLbl.text = self.book.publisher;
     self.catergoryLbl.text = self.book.categories;
     self.checkoutLbl.text = self.book.lastCheckedOut;
+    if([self.book.lastCheckedOutBy length] > 0)
+    {
+        NSString *string = [NSString stringWithFormat:@"By : %@", self.book.lastCheckedOutBy];
+        self.checkOutByLbl.text = string;
+    }
 }
 
 - (void)putToserver:(PLFbook *)bookParams{
@@ -105,6 +109,7 @@
         NSLog(@"%@",returnData);
         
         [self showAlert:@"Done"];
+        [self loadDetail:self.book];
     };
     
     //errorBlock
@@ -130,7 +135,5 @@
                                               otherButtonTitles:nil];
     [alertView show];
 }
-
-
 
 @end
