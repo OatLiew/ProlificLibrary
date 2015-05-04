@@ -25,6 +25,13 @@
     self.catergoriesTextField.delegate = self;
     self.publisherTextField.delegate = self;
     
+    //dismiss Keyboard on Background tap
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -104,6 +111,14 @@
     
 }
 
+-(void)dismissKeyboard{
+    
+    [self.titleTextField resignFirstResponder];
+    [self.authorTextField resignFirstResponder];
+    [self.catergoriesTextField resignFirstResponder];
+    [self.publisherTextField resignFirstResponder];
+}
+
 #pragma mark - UITextfiled
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
@@ -113,11 +128,7 @@
 //hide keyboard
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [self.titleTextField resignFirstResponder];
-    [self.authorTextField resignFirstResponder];
-    [self.catergoriesTextField resignFirstResponder];
-    [self.publisherTextField resignFirstResponder];
-    
+    [self dismissKeyboard];
     return YES;
 }
 
