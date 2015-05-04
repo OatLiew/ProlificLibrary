@@ -94,7 +94,12 @@
     self.authorLbl.text = self.book.author;
     self.publisherLbl.text = self.book.publisher;
     self.catergoryLbl.text = self.book.categories;
-    self.checkoutLbl.text = self.book.lastCheckedOut;
+    
+    
+    if([self.book.lastCheckedOut length] > 0){
+        self.checkoutLbl.text = [self conVertDateTime:self.book.lastCheckedOut];
+    }
+    
     if([self.book.lastCheckedOutBy length] > 0)
     {
         NSString *string = [NSString stringWithFormat:@"By : %@", self.book.lastCheckedOutBy];
@@ -134,6 +139,18 @@
                                               cancelButtonTitle:@"Ok"
                                               otherButtonTitles:nil];
     [alertView show];
+}
+
+//Convert dateTime Format
+- (NSString *)conVertDateTime:(NSString *)dateTime{
+
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd hh:mm:ss";
+    NSDate *yourDate = [dateFormatter dateFromString:dateTime];
+    dateFormatter.dateFormat = @"MMM dd yyyy, hh:mm a";
+    
+    return [dateFormatter stringFromDate:yourDate];
+
 }
 
 @end
