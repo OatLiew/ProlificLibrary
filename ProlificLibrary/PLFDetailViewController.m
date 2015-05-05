@@ -90,7 +90,6 @@ static NSString * const CONVERTED_FORMAT = @"MMMM dd, yyyy h:mm a";
     [[PLFhttpClient sharedPLFHTTPClient]getBookWithData:book
                                      WithSuccessHandler:submissionHandler
                                     andWithErrorHandler:errorHandler];
-
 }
 
 - (void)loadDetailView{
@@ -99,7 +98,6 @@ static NSString * const CONVERTED_FORMAT = @"MMMM dd, yyyy h:mm a";
     self.authorLbl.text = self.book.author;
     self.publisherLbl.text = self.book.publisher;
     self.catergoryLbl.text = self.book.categories;
-    
     
     if([self.book.lastCheckedOut length] > 0){
         NSString *convertedDate = [self conVertDateTime:self.book.lastCheckedOut];
@@ -132,7 +130,6 @@ static NSString * const CONVERTED_FORMAT = @"MMMM dd, yyyy h:mm a";
 
 }
 
-//Show Alert
 - (void)showAlert:(NSString *)message{
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:message
                                                         message:nil
@@ -144,7 +141,7 @@ static NSString * const CONVERTED_FORMAT = @"MMMM dd, yyyy h:mm a";
 
 //Convert dateTime Format
 - (NSString *)conVertDateTime:(NSString *)dateTime{
-   
+
     //get NSdate
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];

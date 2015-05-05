@@ -10,8 +10,6 @@
 #import "PLFhttpClient.h"
 #import "PLFtableCell.h"
 #import "PLFDetailViewController.h"
-//#import "UIImageView+AFNetworking.h" //asynchonous loading of images
-
 
 @interface PLFMasterViewController ()
 @property (strong, nonatomic) NSMutableArray *booksArray;
@@ -23,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self addRefreshControl];
     self.booksArray = [[NSMutableArray alloc]init];
 }
 
@@ -82,6 +81,41 @@
                                         andWithErrorHandler:errorHandler];
     
 }
+
+- (void)reloadData{
+    [self loadBooks];
+    [self.tableView reloadData];
+    
+    // End the refreshing
+    if (self.refreshControl) {
+        NSString *title = [NSString stringWithFormat:@"Written by Phong ©2015"];
+        NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor whiteColor]
+                                                                    forKey:NSForegroundColorAttributeName];
+        NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
+        self.refreshControl.attributedTitle = attributedTitle;
+        [self.refreshControl endRefreshing];
+    }
+}
+
+
+- (void)addRefreshControl{
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor =  [UIColor purpleColor];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(reloadData)
+                  forControlEvents:UIControlEventValueChanged];
+}
+
+//- (UIColor *)randomColor{
+//    
+//    CGFloat hue = ( arc4random() % 256 / 256.0 );
+//    CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5;  //  0.5 to 1.0, away from white
+//    CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5;  //  0.5 to 1.0, away from black
+//    UIColor *color = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
+//    
+//    return color;
+//}
 
 #pragma mark - Segues
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
