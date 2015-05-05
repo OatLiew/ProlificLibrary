@@ -10,6 +10,9 @@
 #import "PLFhttpClient.h"
 #import <MRProgress/MRProgress.h> //animation framework for loading
 
+static NSString * const ORIGINAL_FORMAT = @"yyyy-MM-dd HH:mm:ss";
+static NSString * const CONVERTED_FORMAT = @"MMMM dd, yyyy h:mm a";
+
 @interface PLFDetailViewController ()
 @end
 
@@ -18,6 +21,8 @@
 #pragma mark - Lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //start animation for loading
     [MRProgressOverlayView showOverlayAddedTo:self.view animated:YES];
     [self loadDetail:self.book];
 }
@@ -97,13 +102,9 @@
     
     
     if([self.book.lastCheckedOut length] > 0){
-        self.checkoutLbl.text = [self conVertDateTime:self.book.lastCheckedOut];
-    }
-    
-    if([self.book.lastCheckedOutBy length] > 0)
-    {
-        NSString *string = [NSString stringWithFormat:@"By : %@", self.book.lastCheckedOutBy];
-        self.checkOutByLbl.text = string;
+        NSString *convertedDate = [self conVertDateTime:self.book.lastCheckedOut];
+        NSString *convertedStr = [NSString stringWithFormat:@"By %@, %@", self.book.lastCheckedOutBy,convertedDate];
+        self.checkoutLbl.text = convertedStr;
     }
 }
 
@@ -143,13 +144,19 @@
 
 //Convert dateTime Format
 - (NSString *)conVertDateTime:(NSString *)dateTime{
-
-    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"yyyy-MM-dd hh:mm:ss";
-    NSDate *yourDate = [dateFormatter dateFromString:dateTime];
-    dateFormatter.dateFormat = @"MMM dd yyyy, hh:mm a";
+   
+    //get NSdate
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+    dateFormatter.dateFormat = ORIGINAL_FORMAT;
+    NSDate *date = [dateFormatter dateFromString: dateTime];
     
-    return [dateFormatter stringFromDate:yourDate];
+    //convert the format
+    [dateFormatter setDateFormat:CONVERTED_FORMAT];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"PDT"]];
+    NSString *convertedStr = [dateFormatter stringFromDate:date];
+    
+    return convertedStr;
 
 }
 
