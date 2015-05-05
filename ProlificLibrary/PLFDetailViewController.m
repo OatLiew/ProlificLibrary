@@ -10,6 +10,7 @@
 #import "PLFhttpClient.h"
 #import <MRProgress/MRProgress.h> //animation framework for loading
 #import "UIImageView+AFNetworking.h"
+#import "PLFAddBookViewController.h"
 
 static NSString * const ORIGINAL_FORMAT = @"yyyy-MM-dd HH:mm:ss";
 static NSString * const CONVERTED_FORMAT = @"MMMM dd, yyyy h:mm a";
@@ -23,17 +24,19 @@ static NSString * const CONVERTED_FORMAT = @"MMMM dd, yyyy h:mm a";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //start animation for loading
-    [MRProgressOverlayView showOverlayAddedTo:self.view animated:YES];
-    
+    //round image 
     self.bookImage.layer.cornerRadius = self.bookImage.frame.size.width / 2;
     self.bookImage.clipsToBounds = YES;
     self.bookImage.layer.borderColor = [[UIColor grayColor] CGColor];
     self.bookImage.layer.borderWidth = 1.0;
     self.bookImage.layer.masksToBounds = YES;
+}
 
+- (void)viewWillAppear:(BOOL)animated {
+    [MRProgressOverlayView showOverlayAddedTo:self.view animated:YES];
     [self loadDetail:self.book];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -55,6 +58,10 @@ static NSString * const CONVERTED_FORMAT = @"MMMM dd, yyyy h:mm a";
         if([NameTextField.text length] > 0){
             PLFbook *book = [[PLFbook alloc]init];
             book.url = self.book.url;
+            book.author = self.book.author;
+            book.title = self.book.title;
+            book.publisher = self.book.publisher;
+            book.categories = self.book.categories;
             book.lastCheckedOutBy = NameTextField.text;
             [self putToserver:book];
         }
@@ -77,6 +84,22 @@ static NSString * const CONVERTED_FORMAT = @"MMMM dd, yyyy h:mm a";
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
+- (IBAction)editBtnPressed:(id)sender {
+    [self performSegueWithIdentifier:@"editSegue" sender:self];
+}
+
+#pragma mark - Segues
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"editSegue"]) {
+        
+        UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
+        PLFAddBookViewController *viewController = (PLFAddBookViewController *)navController.topViewController;
+        viewController.book = self.book;
+        
+    }
+}
+
+
 #pragma mark - public
 - (void)loadDetail:(PLFbook *)book{
     
@@ -91,6 +114,7 @@ static NSString * const CONVERTED_FORMAT = @"MMMM dd, yyyy h:mm a";
     void (^errorHandler)(NSURLSessionDataTask *task, NSError *error) = ^(NSURLSessionDataTask *task, NSError *error){
         
         NSLog(@"%@",error);
+        [MRProgressOverlayView dismissOverlayForView:self.view animated:YES];
         return;
     };
     
@@ -221,6 +245,7 @@ static NSString * const CONVERTED_FORMAT = @"MMMM dd, yyyy h:mm a";
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     UIImage *placeholderImage = [UIImage imageNamed:@"placeholder.gpg"];
     
+    //display image with Afnetworking
     [self.bookImage setImageWithURLRequest:request
                           placeholderImage:placeholderImage
                                    success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {

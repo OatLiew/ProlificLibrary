@@ -224,7 +224,13 @@
                         </variation>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
+                    <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM">
+                        <barButtonItem key="rightBarButtonItem" title="edit" id="Tc6-uw-WfH">
+                            <connections>
+                                <action selector="editBtnPressed:" destination="JEX-9P-axG" id="GA7-3b-Cyf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="authorLbl" destination="Qik-Vc-dTK" id="Gs9-zo-G8h"/>
                         <outlet property="bookImage" destination="G6s-25-0ky" id="g7i-Fh-iKG"/>
@@ -232,11 +238,12 @@
                         <outlet property="checkoutLbl" destination="yDk-oL-42F" id="VK9-aV-eLl"/>
                         <outlet property="publisherLbl" destination="S6S-de-zA6" id="92H-BN-9OP"/>
                         <outlet property="titleLbl" destination="Lea-sX-eqk" id="WjL-jB-PHZ"/>
+                        <segue destination="RCI-z5-TvK" kind="presentation" identifier="editSegue" id="v52-au-BhK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2286" y="-343"/>
+            <point key="canvasLocation" x="2224" y="-336"/>
         </scene>
         <!--Master ViewController-->
         <scene sceneID="smW-Zh-WAh">
@@ -313,7 +320,7 @@
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Books" id="Zdf-7t-Un8">
+                    <navigationItem key="navigationItem" title="B" id="Zdf-7t-Un8">
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="4g3-FQ-qhP" userLabel="Add button">
                             <connections>
                                 <action selector="addBtnToAddBookViewController:" destination="7bK-jq-Zjz" id="Rrj-Wg-aWS"/>
@@ -541,4 +548,7 @@
         <image name="placeholder.jpg" width="300" height="300"/>
         <image name="tree.png" width="1316" height="252"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="v52-au-BhK"/>
+    </inferredMetricsTieBreakers>
 </document>

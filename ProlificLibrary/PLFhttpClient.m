@@ -153,7 +153,12 @@ static NSString * const GoogleImagesURLString = @"https://ajax.googleapis.com/aj
     NSString *string = [NSString stringWithFormat:@"%@%@", BaseURLString, book.url];
     NSURL *url = [NSURL URLWithString:string];
     
-    NSDictionary *bookParams = @{@"lastCheckedOutBy":book.lastCheckedOutBy};
+    NSDictionary *bookParams = @{@"lastCheckedOutBy":book.lastCheckedOutBy,
+                                 @"author":book.author,
+                                 @"title":book.title,
+                                 @"publisher":book.publisher,
+                                 @"categories":book.categories};
+    
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:url];
     [manager PUT:string parameters:bookParams success:^(NSURLSessionDataTask *task, id responseObject){
         
@@ -171,6 +176,7 @@ static NSString * const GoogleImagesURLString = @"https://ajax.googleapis.com/aj
     
 }
 
+//GET google Images
 - (void)getImagesWithQuery:(NSString *)query
         WithSuccessHandler:(SubmissionBlockDictionary)successBlock
         andWithErrorHandler:(PLFDataErrorBlock)errorBlock;

@@ -28,9 +28,17 @@
     //dismiss Keyboard on Background tap
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
-                                   action:@selector(dismissKeyboard)];
-    
+                                   action:@selector(dismissKeyboard)];    
     [self.view addGestureRecognizer:tap];
+    
+    //Edit Mode
+    if(self.book){
+        [self.navigationItem setTitle:@"Edit"];
+        self.titleTextField.text = self.book.title;
+        self.authorTextField.text = self.book.author;
+        self.catergoriesTextField.text = self.book.categories;
+        self.publisherTextField.text = self.book.publisher;
+    }
     
 }
 
@@ -51,8 +59,15 @@
         book.title = self.titleTextField.text;
         book.publisher = self.publisherTextField.text;
         book.categories = self.catergoriesTextField.text;
-                
-        [self postToServer:book];
+
+        //check for EditMode
+        if(!self.book)
+            [self postToServer:book];
+        else{
+            book.lastCheckedOutBy = self.book.lastCheckedOutBy;
+            book.url = self.book.url;
+            [self putToServer:book];
+        }
     }
     else{
 
@@ -93,6 +108,29 @@
     
 }
 
+- (void)putToServer:(PLFbook *)bookParams{
+    
+    //successBlock
+    void (^submissionHandler)(NSArray *) = ^(NSArray *returnData) {
+        NSLog(@"%@",returnData);
+        
+        [self showAlert:@"Done"];
+    };
+    
+    //errorBlock
+    void (^errorHandler)(NSURLSessionDataTask *task, NSError *error) = ^(NSURLSessionDataTask *task, NSError *error){
+        
+        [self showAlert:@"Error"];
+        NSLog(@"%@",error);
+        return;
+    };
+    
+    [[PLFhttpClient sharedPLFHTTPClient] putBookWithData:bookParams
+                                      WithSuccessHandler:submissionHandler
+                                     andWithErrorHandler:errorHandler];
+    
+}
+
 - (void)showAlert:(NSString *)message{
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:message
                                                         message:nil
@@ -108,12 +146,7 @@
     self.authorTextField.text = @"";
     self.catergoriesTextField.text = @"";
     self.publisherTextField.text = @"";
-    
-    self.titleTextField.layer.borderColor=[[UIColor clearColor]CGColor];
-    self.authorTextField.layer.borderColor=[[UIColor clearColor]CGColor];
-    self.catergoriesTextField.layer.borderColor=[[UIColor clearColor]CGColor];
-    self.publisherTextField.layer.borderColor=[[UIColor clearColor]CGColor];
-    
+    [self resetBorderColor];
 }
 
 -(void)dismissKeyboard{
@@ -122,7 +155,6 @@
     [self.authorTextField resignFirstResponder];
     [self.catergoriesTextField resignFirstResponder];
     [self.publisherTextField resignFirstResponder];
-    
     [self resetBorderColor];
 }
 
