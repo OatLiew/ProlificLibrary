@@ -24,7 +24,7 @@
 		4287B0161AF891B600A4C890 /* wave.png in Resources */ = {isa = PBXBuildFile; fileRef = 4287B0151AF891B600A4C890 /* wave.png */; };
 		4287B0181AF8929A00A4C890 /* flower.png in Resources */ = {isa = PBXBuildFile; fileRef = 4287B0171AF8929A00A4C890 /* flower.png */; };
 		4287B01A1AF8955500A4C890 /* tree.png in Resources */ = {isa = PBXBuildFile; fileRef = 4287B0191AF8955500A4C890 /* tree.png */; };
-		4287B01C1AF8AA6000A4C890 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 4287B01B1AF8AA6000A4C890 /* placeholder.png */; };
+		4287B0201AF8B84F00A4C890 /* placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4287B01F1AF8B84F00A4C890 /* placeholder.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +67,7 @@
 		4287B0151AF891B600A4C890 /* wave.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wave.png; path = resource/wave.png; sourceTree = "<group>"; };
 		4287B0171AF8929A00A4C890 /* flower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flower.png; path = resource/flower.png; sourceTree = "<group>"; };
 		4287B0191AF8955500A4C890 /* tree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tree.png; path = resource/tree.png; sourceTree = "<group>"; };
-		4287B01B1AF8AA6000A4C890 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = placeholder.png; path = resource/placeholder.png; sourceTree = "<group>"; };
+		4287B01F1AF8B84F00A4C890 /* placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = placeholder.jpg; path = resource/placeholder.jpg; sourceTree = "<group>"; };
 		508FE9EB232E425AAAC0D219 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		C69A58CCF117D22BEB86D185 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -224,7 +224,7 @@
 		4287B0121AF8908300A4C890 /* resource */ = {
 			isa = PBXGroup;
 			children = (
-				4287B01B1AF8AA6000A4C890 /* placeholder.png */,
+				4287B01F1AF8B84F00A4C890 /* placeholder.jpg */,
 				4287B0191AF8955500A4C890 /* tree.png */,
 				4287B0171AF8929A00A4C890 /* flower.png */,
 				4287B0151AF891B600A4C890 /* wave.png */,
@@ -335,7 +335,7 @@
 				4274EF1C1AF1E93200281FAE /* LaunchScreen.xib in Resources */,
 				4287B0161AF891B600A4C890 /* wave.png in Resources */,
 				4287B0181AF8929A00A4C890 /* flower.png in Resources */,
-				4287B01C1AF8AA6000A4C890 /* placeholder.png in Resources */,
+				4287B0201AF8B84F00A4C890 /* placeholder.jpg in Resources */,
 				4274EF191AF1E93200281FAE /* Images.xcassets in Resources */,
 				4287B01A1AF8955500A4C890 /* tree.png in Resources */,
 			);

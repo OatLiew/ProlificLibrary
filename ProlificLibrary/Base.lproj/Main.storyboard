@@ -144,7 +144,7 @@
                                     <action selector="pressedCheckout:" destination="JEX-9P-axG" eventType="touchUpInside" id="YVG-60-zFf"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder.png" translatesAutoresizingMaskIntoConstraints="NO" id="G6s-25-0ky">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="G6s-25-0ky">
                                 <rect key="frame" x="238" y="79" width="120" height="120"/>
                                 <color key="backgroundColor" red="0.89009666440000001" green="0.7430306552" blue="0.66732238399999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -393,7 +393,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Book Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IQL-3x-y2K">
-                                                    <rect key="frame" x="18" y="18" width="564" height="40"/>
+                                                    <rect key="frame" x="18" y="28" width="564" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="Tly-su-NZa"/>
                                                     </constraints>
@@ -402,7 +402,7 @@
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="IQL-3x-y2K" firstAttribute="top" secondItem="M71-to-WVH" secondAttribute="topMargin" constant="10" id="5ZS-IP-roU"/>
+                                                <constraint firstItem="IQL-3x-y2K" firstAttribute="top" secondItem="M71-to-WVH" secondAttribute="topMargin" constant="20" id="5ZS-IP-roU"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="IQL-3x-y2K" secondAttribute="trailing" constant="10" id="XCz-cm-9Jw"/>
                                                 <constraint firstItem="IQL-3x-y2K" firstAttribute="leading" secondItem="M71-to-WVH" secondAttribute="leadingMargin" constant="10" id="sll-9C-hlC"/>
                                             </constraints>
@@ -415,7 +415,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Author" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NKj-ig-aHr">
-                                                    <rect key="frame" x="18" y="18" width="561" height="40"/>
+                                                    <rect key="frame" x="18" y="28" width="561" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="uu6-ni-0LK"/>
                                                     </constraints>
@@ -427,7 +427,7 @@
                                                 <constraint firstItem="NKj-ig-aHr" firstAttribute="leading" secondItem="oiG-ld-z7f" secondAttribute="leadingMargin" constant="10" id="19G-ZH-lXQ"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="NKj-ig-aHr" secondAttribute="trailing" constant="10" id="7fr-Yn-pA1"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="NKj-ig-aHr" secondAttribute="trailing" constant="13" id="KRK-ik-wtO"/>
-                                                <constraint firstItem="NKj-ig-aHr" firstAttribute="top" secondItem="oiG-ld-z7f" secondAttribute="topMargin" constant="10" id="LhO-u6-QPJ"/>
+                                                <constraint firstItem="NKj-ig-aHr" firstAttribute="top" secondItem="oiG-ld-z7f" secondAttribute="topMargin" constant="20" id="LhO-u6-QPJ"/>
                                                 <constraint firstItem="NKj-ig-aHr" firstAttribute="leading" secondItem="oiG-ld-z7f" secondAttribute="leadingMargin" constant="10" id="qNU-LN-a9j"/>
                                             </constraints>
                                             <variation key="default">
@@ -444,7 +444,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Publisher" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gsj-eh-q2z">
-                                                    <rect key="frame" x="18" y="18" width="564" height="40"/>
+                                                    <rect key="frame" x="18" y="28" width="564" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="5q4-FG-B1G"/>
                                                     </constraints>
@@ -455,7 +455,7 @@
                                             <constraints>
                                                 <constraint firstItem="gsj-eh-q2z" firstAttribute="leading" secondItem="KU5-lr-LD3" secondAttribute="leadingMargin" constant="10" id="0og-j0-VhL"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="gsj-eh-q2z" secondAttribute="trailing" constant="10" id="51r-Qa-u3u"/>
-                                                <constraint firstItem="gsj-eh-q2z" firstAttribute="top" secondItem="KU5-lr-LD3" secondAttribute="topMargin" constant="10" id="SpP-gh-plh"/>
+                                                <constraint firstItem="gsj-eh-q2z" firstAttribute="top" secondItem="KU5-lr-LD3" secondAttribute="topMargin" constant="20" id="SpP-gh-plh"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -465,7 +465,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Catergories" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IOE-tQ-7Zd">
-                                                    <rect key="frame" x="18" y="18" width="564" height="40"/>
+                                                    <rect key="frame" x="18" y="28" width="564" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="HkC-jZ-OtE"/>
                                                     </constraints>
@@ -476,7 +476,7 @@
                                             <constraints>
                                                 <constraint firstItem="IOE-tQ-7Zd" firstAttribute="leading" secondItem="wZz-8j-olk" secondAttribute="leadingMargin" constant="10" id="3sG-Lv-mf2"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="IOE-tQ-7Zd" secondAttribute="trailing" constant="10" id="V6W-pv-RGy"/>
-                                                <constraint firstItem="IOE-tQ-7Zd" firstAttribute="top" secondItem="wZz-8j-olk" secondAttribute="topMargin" constant="10" id="wih-F1-hDP"/>
+                                                <constraint firstItem="IOE-tQ-7Zd" firstAttribute="top" secondItem="wZz-8j-olk" secondAttribute="topMargin" constant="20" id="wih-F1-hDP"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -486,7 +486,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mdr-NH-Zya">
-                                                    <rect key="frame" x="18" y="18" width="564" height="44"/>
+                                                    <rect key="frame" x="18" y="28" width="564" height="34"/>
                                                     <color key="backgroundColor" red="0.043137254901960784" green="0.62745098039215685" blue="0.83137254901960778" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="v7m-3h-JpH"/>
@@ -513,7 +513,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="mdr-NH-Zya" secondAttribute="trailing" constant="10" id="Km0-ew-Jww"/>
-                                                <constraint firstItem="mdr-NH-Zya" firstAttribute="top" secondItem="2Kb-FT-pac" secondAttribute="topMargin" constant="10" id="MKA-LI-pvM"/>
+                                                <constraint firstItem="mdr-NH-Zya" firstAttribute="top" secondItem="2Kb-FT-pac" secondAttribute="topMargin" constant="20" id="MKA-LI-pvM"/>
                                                 <constraint firstItem="mdr-NH-Zya" firstAttribute="top" secondItem="2Kb-FT-pac" secondAttribute="topMargin" constant="12" id="cQZ-aB-ngr"/>
                                                 <constraint firstItem="mdr-NH-Zya" firstAttribute="leading" secondItem="2Kb-FT-pac" secondAttribute="leadingMargin" constant="10" id="uby-Kc-1E5"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="mdr-NH-Zya" secondAttribute="bottom" constant="10" id="xj9-2r-6pO"/>
@@ -553,7 +553,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="placeholder.png" width="300" height="300"/>
+        <image name="placeholder.jpg" width="692" height="440"/>
         <image name="tree.png" width="1316" height="252"/>
     </resources>
 </document>

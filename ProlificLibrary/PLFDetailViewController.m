@@ -219,7 +219,7 @@ static NSString * const CONVERTED_FORMAT = @"MMMM dd, yyyy h:mm a";
     
     NSURL *url = [NSURL URLWithString:imageUrl];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    UIImage *placeholderImage = [UIImage imageNamed:@"placeholder.png"];
+    UIImage *placeholderImage = [UIImage imageNamed:@"placeholder.gpg"];
     
     [self.bookImage setImageWithURLRequest:request
                           placeholderImage:placeholderImage
