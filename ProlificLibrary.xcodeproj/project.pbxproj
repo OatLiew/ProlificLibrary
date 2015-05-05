@@ -21,6 +21,10 @@
 		4274EF191AF1E93200281FAE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4274EF181AF1E93200281FAE /* Images.xcassets */; };
 		4274EF1C1AF1E93200281FAE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4274EF1A1AF1E93200281FAE /* LaunchScreen.xib */; };
 		4274EF281AF1E93200281FAE /* ProlificLibraryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4274EF271AF1E93200281FAE /* ProlificLibraryTests.m */; };
+		4287B0161AF891B600A4C890 /* wave.png in Resources */ = {isa = PBXBuildFile; fileRef = 4287B0151AF891B600A4C890 /* wave.png */; };
+		4287B0181AF8929A00A4C890 /* flower.png in Resources */ = {isa = PBXBuildFile; fileRef = 4287B0171AF8929A00A4C890 /* flower.png */; };
+		4287B01A1AF8955500A4C890 /* tree.png in Resources */ = {isa = PBXBuildFile; fileRef = 4287B0191AF8955500A4C890 /* tree.png */; };
+		4287B01C1AF8AA6000A4C890 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 4287B01B1AF8AA6000A4C890 /* placeholder.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +64,10 @@
 		4274EF211AF1E93200281FAE /* ProlificLibraryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProlificLibraryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4274EF261AF1E93200281FAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4274EF271AF1E93200281FAE /* ProlificLibraryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProlificLibraryTests.m; sourceTree = "<group>"; };
+		4287B0151AF891B600A4C890 /* wave.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wave.png; path = resource/wave.png; sourceTree = "<group>"; };
+		4287B0171AF8929A00A4C890 /* flower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flower.png; path = resource/flower.png; sourceTree = "<group>"; };
+		4287B0191AF8955500A4C890 /* tree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tree.png; path = resource/tree.png; sourceTree = "<group>"; };
+		4287B01B1AF8AA6000A4C890 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = placeholder.png; path = resource/placeholder.png; sourceTree = "<group>"; };
 		508FE9EB232E425AAAC0D219 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		C69A58CCF117D22BEB86D185 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,6 +148,7 @@
 				4274EF321AF1E98900281FAE /* Model */,
 				4274EF311AF1E97A00281FAE /* ViewController */,
 				4274EF181AF1E93200281FAE /* Images.xcassets */,
+				4287B0121AF8908300A4C890 /* resource */,
 				4274EF081AF1E93100281FAE /* Supporting Files */,
 			);
 			path = ProlificLibrary;
@@ -210,6 +219,17 @@
 				4237DA871AF31B4A0023D454 /* PLFhttpClient.m */,
 			);
 			name = Manager;
+			sourceTree = "<group>";
+		};
+		4287B0121AF8908300A4C890 /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				4287B01B1AF8AA6000A4C890 /* placeholder.png */,
+				4287B0191AF8955500A4C890 /* tree.png */,
+				4287B0171AF8929A00A4C890 /* flower.png */,
+				4287B0151AF891B600A4C890 /* wave.png */,
+			);
+			name = resource;
 			sourceTree = "<group>";
 		};
 		668E1DF8D66ED6EF53964C01 /* Frameworks */ = {
@@ -313,7 +333,11 @@
 			files = (
 				4274EF171AF1E93200281FAE /* Main.storyboard in Resources */,
 				4274EF1C1AF1E93200281FAE /* LaunchScreen.xib in Resources */,
+				4287B0161AF891B600A4C890 /* wave.png in Resources */,
+				4287B0181AF8929A00A4C890 /* flower.png in Resources */,
+				4287B01C1AF8AA6000A4C890 /* placeholder.png in Resources */,
 				4274EF191AF1E93200281FAE /* Images.xcassets in Resources */,
+				4287B01A1AF8955500A4C890 /* tree.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,7 +522,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ProlificLibrary/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -510,7 +534,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ProlificLibrary/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

@@ -11,6 +11,7 @@
 
 //define Type
 typedef void (^SubmissionBlockArray)(NSArray * PLFbooks);
+typedef void (^SubmissionBlockDictionary)(NSDictionary * data);
 typedef void (^SubmissionBlockPLFbook)(PLFbook * PLFbooks);
 typedef void (^PLFDataErrorBlock)(NSURLSessionDataTask *task, NSError *error);
 
@@ -43,6 +44,10 @@ typedef void (^PLFDataErrorBlock)(NSURLSessionDataTask *task, NSError *error);
      WithSuccessHandler:(SubmissionBlockArray)successBlock
     andWithErrorHandler:(PLFDataErrorBlock)errorBlock;
 
+// GET googleImages
+- (void)getImagesWithQuery:(NSString *)query
+        WithSuccessHandler:(SubmissionBlockDictionary)successBlock
+       andWithErrorHandler:(PLFDataErrorBlock)errorBlock;
 
 @end
 

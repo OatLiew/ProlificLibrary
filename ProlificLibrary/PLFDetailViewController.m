@@ -9,6 +9,7 @@
 #import "PLFDetailViewController.h"
 #import "PLFhttpClient.h"
 #import <MRProgress/MRProgress.h> //animation framework for loading
+#import "UIImageView+AFNetworking.h"
 
 static NSString * const ORIGINAL_FORMAT = @"yyyy-MM-dd HH:mm:ss";
 static NSString * const CONVERTED_FORMAT = @"MMMM dd, yyyy h:mm a";
@@ -24,6 +25,13 @@ static NSString * const CONVERTED_FORMAT = @"MMMM dd, yyyy h:mm a";
     
     //start animation for loading
     [MRProgressOverlayView showOverlayAddedTo:self.view animated:YES];
+    
+    self.bookImage.layer.cornerRadius = self.bookImage.frame.size.width / 2;
+    self.bookImage.clipsToBounds = YES;
+    self.bookImage.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.bookImage.layer.borderWidth = 1.0;
+    self.bookImage.layer.masksToBounds = YES;
+
     [self loadDetail:self.book];
 }
 
@@ -75,14 +83,13 @@ static NSString * const CONVERTED_FORMAT = @"MMMM dd, yyyy h:mm a";
     //successBlock
     void (^submissionHandler)(PLFbook *) = ^(PLFbook *returnData) {
         self.book = returnData;
+        [self GetGoogleImages:self.book.title :self.book.author];
         [self loadDetailView];
-        [MRProgressOverlayView dismissOverlayForView:self.view animated:YES];
     };
     
     //errorBlock
     void (^errorHandler)(NSURLSessionDataTask *task, NSError *error) = ^(NSURLSessionDataTask *task, NSError *error){
         
-        [MRProgressOverlayView dismissOverlayForView:self.view animated:YES];
         NSLog(@"%@",error);
         return;
     };
@@ -96,12 +103,20 @@ static NSString * const CONVERTED_FORMAT = @"MMMM dd, yyyy h:mm a";
     
     self.titleLbl.text = self.book.title;
     self.authorLbl.text = self.book.author;
-    self.publisherLbl.text = self.book.publisher;
-    self.catergoryLbl.text = self.book.categories;
+    
+    if([self.book.publisher length] > 0){
+        NSString *convertedStr = [NSString stringWithFormat:@"Publisher: %@",self.book.publisher];
+        self.publisherLbl.text = convertedStr;
+    }
+    
+    if([self.book.categories length] > 0){
+        NSString *convertedStr = [NSString stringWithFormat:@"Tag: %@",self.book.categories];
+        self.catergoryLbl.text = convertedStr;
+    }
     
     if([self.book.lastCheckedOut length] > 0){
         NSString *convertedDate = [self conVertDateTime:self.book.lastCheckedOut];
-        NSString *convertedStr = [NSString stringWithFormat:@"By %@, %@", self.book.lastCheckedOutBy,convertedDate];
+        NSString *convertedStr = [NSString stringWithFormat:@"Check out by %@, %@", self.book.lastCheckedOutBy,convertedDate];
         self.checkoutLbl.text = convertedStr;
     }
 }
@@ -155,6 +170,65 @@ static NSString * const CONVERTED_FORMAT = @"MMMM dd, yyyy h:mm a";
     
     return convertedStr;
 
+}
+
+- (void)GetGoogleImages:(NSString *)title :(NSString *)author{
+    
+    author = [author stringByReplacingOccurrencesOfString:@"," withString:@""];
+    NSString * query = [NSString stringWithFormat:@"%@ +author+ %@", title, author];
+    
+    //successBlock
+    void (^submissionHandler)(NSDictionary *) = ^(NSDictionary *returnData) {
+        
+        NSData *bookData = nil;
+        NSString *imageURl = nil;
+        
+        //get the result
+        NSArray *resultArray = [[[returnData objectForKey:@"responseData"] objectForKey:@"results"] valueForKey:@"url"];
+        NSURL * imageURL = [NSURL URLWithString:[resultArray objectAtIndex:0]];
+
+        for(int i = 0; i < [resultArray count]; i++){
+            imageURl = [resultArray objectAtIndex:i];
+            bookData = [NSData dataWithContentsOfURL:[NSURL URLWithString:imageURl]];
+            NSLog(@"URL INDEX: %d", i);
+            
+            //if image exists
+            if(bookData != NULL){
+                [self displayImage:imageURl];
+                break;
+            }
+        }
+        //hide animation
+        [MRProgressOverlayView dismissOverlayForView:self.view animated:YES];
+    };
+    
+    //errorBlock
+    void (^errorHandler)(NSURLSessionDataTask *task, NSError *error) = ^(NSURLSessionDataTask *task, NSError *error){
+        
+        [MRProgressOverlayView dismissOverlayForView:self.view animated:YES];
+        NSLog(@"%@",error);
+        return;
+    };
+    
+    [[PLFhttpClient sharedPLFHTTPClient]getImagesWithQuery:query
+                                        WithSuccessHandler:submissionHandler
+                                       andWithErrorHandler:errorHandler];
+}
+
+- (void)displayImage:(NSString *)imageUrl{
+    
+    NSURL *url = [NSURL URLWithString:imageUrl];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    UIImage *placeholderImage = [UIImage imageNamed:@"placeholder.png"];
+    
+    [self.bookImage setImageWithURLRequest:request
+                          placeholderImage:placeholderImage
+                                   success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                       
+                                       self.bookImage.image = image;
+                                       
+                                   }
+                                   failure:nil];
 }
 
 @end

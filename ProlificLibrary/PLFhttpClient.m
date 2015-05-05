@@ -12,6 +12,9 @@ static NSString * const BaseURLString = @"http://prolific-interview.herokuapp.co
 static NSString * const GETString = @"/books";
 static NSString * const POSTString = @"/books/";
 
+static NSString * const GoogleImagesURLString = @"https://ajax.googleapis.com/ajax/services/search/images";
+
+
 @interface PLFhttpClient ()
 
 @end
@@ -167,6 +170,31 @@ static NSString * const POSTString = @"/books/";
     }];
     
 }
+
+- (void)getImagesWithQuery:(NSString *)query
+        WithSuccessHandler:(SubmissionBlockDictionary)successBlock
+        andWithErrorHandler:(PLFDataErrorBlock)errorBlock;
+{
+    NSURL *url = [NSURL URLWithString:GoogleImagesURLString];
+    NSDictionary *params = @{@"v":@"1.0",
+                            @"q" : query};
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:url];
+    [manager GET:GoogleImagesURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject){
+        
+        //callBack
+        successBlock(responseObject);
+        NSLog(@"%@",responseObject);
+        
+        
+    }failure:^(NSURLSessionDataTask *task, NSError *error){
+        
+        //callBack
+        errorBlock(task, error);
+        NSLog(@"Failure: %@", error);
+    }];
+
+}
+
 
 
 @end

@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *catergoryLbl;
 @property (weak, nonatomic) IBOutlet UILabel *checkoutLbl;
 @property (weak, nonatomic) IBOutlet UILabel *checkOutByLbl;
+@property (weak, nonatomic) IBOutlet UIImageView *bookImage;
 
 
 @end
