@@ -25,7 +25,7 @@
     self.catergoriesTextField.delegate = self;
     self.publisherTextField.delegate = self;
     
-    //dismiss Keyboard on Background tap
+    //add dismiss Keyboard on Background tap
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];    

@@ -88,7 +88,6 @@
     
     // End the refreshing
     if (self.refreshControl) {
-        
         //add text
         NSString *title = [NSString stringWithFormat:@"Written by Phong ©2015"];
         NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor whiteColor]
@@ -119,9 +118,6 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSLog(@"%@",self.booksArray[indexPath.row]);
         viewController.book = self.booksArray[indexPath.row];
-        
-    }
-    if ([[segue identifier] isEqualToString:@"addBookSegue"]) {
         
     }
 }
