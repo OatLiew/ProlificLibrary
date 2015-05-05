@@ -72,7 +72,7 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6S-de-zA6">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6S-de-zA6">
                                 <rect key="frame" x="16" y="299" width="568" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="464" id="SUp-gf-s3K"/>
@@ -80,15 +80,7 @@
                                     <constraint firstAttribute="height" constant="40" id="oA6-Tt-EUz"/>
                                     <constraint firstAttribute="height" constant="40" id="pJo-uB-CC7"/>
                                 </constraints>
-                                <attributedString key="attributedText">
-                                    <fragment content="Publisher">
-                                        <attributes>
-                                            <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                            <font key="NSFont" size="14" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -98,7 +90,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H3S-Fd-Lu3">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H3S-Fd-Lu3">
                                 <rect key="frame" x="16" y="334" width="568" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="Pze-KC-oPC"/>
@@ -106,15 +98,8 @@
                                     <constraint firstAttribute="width" constant="511" id="bCL-j4-Ndw"/>
                                     <constraint firstAttribute="height" constant="37" id="yrU-cH-v54"/>
                                 </constraints>
-                                <attributedString key="attributedText">
-                                    <fragment content="tag">
-                                        <attributes>
-                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <font key="NSFont" size="15" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -165,10 +150,10 @@
                                     <constraint firstAttribute="height" constant="35" id="zOE-2Q-ojD"/>
                                 </constraints>
                                 <attributedString key="attributedText">
-                                    <fragment content="last Check Out">
+                                    <fragment content="...">
                                         <attributes>
                                             <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                            <font key="NSFont" size="12" name="HelveticaNeue"/>
+                                            <font key="NSFont" size="14" name="HelveticaNeue"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                         </attributes>
                                     </fragment>
@@ -553,7 +538,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="placeholder.jpg" width="692" height="440"/>
+        <image name="placeholder.jpg" width="300" height="300"/>
         <image name="tree.png" width="1316" height="252"/>
     </resources>
 </document>

@@ -109,6 +109,11 @@
     self.catergoriesTextField.text = @"";
     self.publisherTextField.text = @"";
     
+    self.titleTextField.layer.borderColor=[[UIColor clearColor]CGColor];
+    self.authorTextField.layer.borderColor=[[UIColor clearColor]CGColor];
+    self.catergoriesTextField.layer.borderColor=[[UIColor clearColor]CGColor];
+    self.publisherTextField.layer.borderColor=[[UIColor clearColor]CGColor];
+    
 }
 
 -(void)dismissKeyboard{
@@ -117,19 +122,41 @@
     [self.authorTextField resignFirstResponder];
     [self.catergoriesTextField resignFirstResponder];
     [self.publisherTextField resignFirstResponder];
+    
+    [self resetBorderColor];
 }
 
 #pragma mark - UITextfiled
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-{
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     return YES;
 }
 
+//change borderColor
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    textField.layer.cornerRadius=8.0f;
+    textField.layer.masksToBounds=YES;
+    textField.layer.borderColor=[[UIColor purpleColor]CGColor];
+    textField.layer.borderWidth= 1.0f;
+
+}
+
+//change back border color
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    [self resetBorderColor];
+}
+
 //hide keyboard
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    textField.layer.borderColor=[[UIColor clearColor]CGColor];
     [self dismissKeyboard];
     return YES;
+}
+
+- (void)resetBorderColor{
+    self.titleTextField.layer.borderColor=[[UIColor clearColor]CGColor];
+    self.authorTextField.layer.borderColor=[[UIColor clearColor]CGColor];
+    self.catergoriesTextField.layer.borderColor=[[UIColor clearColor]CGColor];
+    self.publisherTextField.layer.borderColor=[[UIColor clearColor]CGColor];
 }
 
 
